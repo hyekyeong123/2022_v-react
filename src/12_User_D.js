@@ -1,5 +1,5 @@
 import React, { useReducer, useMemo } from 'react';
-import UserList from './UserList';
+import UserList from './11_UserList_D';
 import CreateUser from './CreateUser';
 import produce, {castDraft} from "immer";
 
@@ -68,7 +68,7 @@ function reducer(state, action) {
 // UserDispatch 라는 이름으로 내보내줍니다.
 export const UserDispatch = React.createContext(null);
 
-function AppUser() {
+function User() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const { users } = state;
@@ -83,4 +83,4 @@ function AppUser() {
   );
 }
 
-export default AppUser;
+export default User;

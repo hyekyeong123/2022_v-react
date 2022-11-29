@@ -1,6 +1,6 @@
 import React, { useRef, useContext } from 'react';
 import useInputs from './hooks/useInputs';
-import { UserDispatch } from './AppUser';
+import { UserDispatch } from './12_User_D';
 
 const CreateUser = () => {
   const [{ username, email }, onChange, reset] = useInputs({

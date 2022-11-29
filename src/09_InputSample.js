@@ -1,16 +1,18 @@
 import React, { useState, useRef } from 'react';
 
-function InputSample() {
+// Input 상태 관리하기 + 여러 개의 input 상태 관리하기 + useRef로 특정 DOM 선택하기
+
+export default function InputSample() {
   const [inputs, setInputs] = useState({
     name: '',
     nickname: ''
   });
-  const nameInput = useRef();
-
   const { name, nickname } = inputs; // 비구조화 할당을 통해 값 추출
-
+  const nameInput = useRef();
+  // *******************************************************
   const onChange = e => {
     const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
+
     setInputs({
       ...inputs, // 기존의 input 객체를 복사한 뒤
       [name]: value // name 키를 가진 값을 value 로 설정
@@ -24,7 +26,7 @@ function InputSample() {
     });
     nameInput.current.focus();
   };
-
+  // *******************************************************
   return (
     <div>
       <input
@@ -49,4 +51,3 @@ function InputSample() {
   );
 }
 
-export default InputSample;
