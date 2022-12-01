@@ -1,8 +1,8 @@
 import React, { useRef, useContext } from 'react';
-import useInputs from './hooks/useInputs';
+import useInputs from '../../hooks/useInputs';
 import { UserDispatch } from './12_User_D';
 
-const CreateUser = () => {
+const CreateUser_D = () => {
   const [{ username, email }, onChange, reset] = useInputs({
     username: '',
     email: ''
@@ -43,4 +43,4 @@ const CreateUser = () => {
   );
 };
 
-export default React.memo(CreateUser);
+export default React.memo(CreateUser_D);
