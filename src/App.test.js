@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppUser from './user/dispatch/12_User_D';
+import AppUser from './user/11_use-reducer/12_UserContainer_Reducer';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');

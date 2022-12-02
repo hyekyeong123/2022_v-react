@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function CreateUser({username, email, onChange, onCreate}) {
+function CreateUser({username, email, onChange, onCreate}) {
   // *********************************************
   return (
     <div>
@@ -23,3 +23,5 @@ export default function CreateUser({username, email, onChange, onCreate}) {
   );
 };
 
+// React.memo를 사용하면 props가 바뀔때에만 실행ㄴㄴ
+export default React.memo(CreateUser);

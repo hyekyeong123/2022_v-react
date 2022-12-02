@@ -1,8 +1,8 @@
-import React, {useRef, useState} from 'react';
-import UserList from "./11_UserList";
-import CreateUser from "./13_CreateUser";
+import React, {useRef, useState, useMemo, useCallback} from 'react';
+import UserList from "../23_context/UserList";
+import CreateUser from "../23_context/CreateUser";
 
-export default function User() {
+function User() {
   const [users, setUsers] = useState([
     {
       id: 1,
@@ -34,16 +34,16 @@ export default function User() {
   // 굳이 useRef로 한 이유는 이 값이 바뀔때마다 컴포넌트가 리렌더링 할 필요가 없기 때문
 
 // ******************************************
-  const onChange = (e) => {
+  const onChange = useCallback((e) => {
     setInputs({
       ...inputs,
       [e.target.name] : e.target.value
     })
-  }
+  },[inputs]);
 
   // 배열 추가하기
-  const onCreate = () => {
-    console.log("[JHG] nextId.current : "+nextId.current);
+  const onCreate = useCallback(() => {
+    alert("username : "+username);
     nextId.current += 1;
 
     setInputs({
@@ -56,25 +56,34 @@ export default function User() {
       username,
       email
     };
-    setUsers([...users, newUser]);
-  }
+    setUsers(users => [...users, newUser]);
+  },[username, email])
 
   // 배열 삭제
-  const onRemove = (deleteId) => {
-    setUsers(users.filter(user => user.id !== deleteId))
-  }
+  const onRemove = useCallback((deleteId) => {
+    setUsers(users=>users.filter(user => user.id !== deleteId))
+  },[]);
 
   // 배열 수정하기
-  const onToggle = (modifyId) => {
-    setUsers(users.map(
+  const onToggle = useCallback((modifyId) => {
+    setUsers(users => users.map(
       user => user.id === modifyId
       ? {...user, active: !user.active}
       : user
     ))
+  },[])
+
+  // 액티브한 유저 수 가져오기
+  // useMemo를 사용하지 않을경우 input창에 타자만 입력해도 계속해서 수를 셈
+  function countActiveUsers(user){
+    console.log(`[JHG] 활성 사용자 수를 세는 중...`);
+    return users.filter(user => user.active).length;
   }
+  const count = useMemo(() => countActiveUsers(users), [users]);
 // ******************************************
   return (
     <>
+      {/* 유저 생성 input */}
       <CreateUser
         username={username}
         email={email}
@@ -86,6 +95,9 @@ export default function User() {
         onRemove={onRemove}
         onToggle={onToggle}
       />
+      <div>활성 사용자 수 : {count}</div>
     </>
   );
 };
+
+export default React.memo(User);

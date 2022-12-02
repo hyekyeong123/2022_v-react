@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react';
 import UserItem from "./UserItem";
 // *****************************************************************************
-export default function UserList({users, onRemove, onToggle}) {
+function UserList({users, onRemove, onToggle}) {
  // ******************************************
   return (
     <div>
@@ -19,3 +19,4 @@ export default function UserList({users, onRemove, onToggle}) {
     </div>
   );
 };
+export default React.memo(UserList);

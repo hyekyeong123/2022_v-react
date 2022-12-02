@@ -7,15 +7,15 @@ function reducer(state, action) {
     case 'DECREMENT':
       return state - 1;
     default:
-      return state;
+      throw new Error("Unhandled action");
   }
 }
-
-function Counter_F() {
+// ***************************************************************
+function Counter_Reducer() {
   const [number, dispatch] = useReducer(reducer, 0);
 
   const onIncrease = () => {
-    dispatch({ type: 'INCREMENT' });
+    dispatch({ type: "INCREMENT" });
   };
 
   const onDecrease = () => {
@@ -31,4 +31,4 @@ function Counter_F() {
   );
 }
 
-export default Counter_F;
+export default Counter_Reducer;

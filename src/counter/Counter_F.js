@@ -5,7 +5,6 @@ function Counter_F() {
   const [number, setNumber] = useState(0);
   // *****************************************
   const onIncrease = () => {
-    // setNumber(number+1);
     setNumber(prev => prev+1); // 이 방식도 가능 (최적화 방식) 함수형 업데이트
   };
 

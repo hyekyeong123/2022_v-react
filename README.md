@@ -5,3 +5,6 @@ https://learnjs.vlpt.us
 
 리액트 문서
 https://react.vlpt.us
+
+다시 들어야 할 강의
+19
